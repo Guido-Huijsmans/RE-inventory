@@ -1,0 +1,6 @@
+1. Sorting
+2. Slot locking
+3. Quick deposit/loot
+4. Auto-refill (also from shulker/bundle)
+5. Auto tool selection
+6. Bundle-like UI for shulker box

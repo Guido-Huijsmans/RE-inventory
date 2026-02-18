@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "reinventory",
+	"version": "0.2.3",
+	"name": "RE:inventory",
+	"description": "A simple mod to add some much needed quality of life features to Minecraft's inventory.",
+	"authors": [
+		"uberpookie"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/user/uberpookie",
+		"sources": ""
+	},
+	"license": "MIT",
+	"icon": "assets/reinventory/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"uberpookie.reinventory.REinventory"
+		],
+		"client": [
+			"uberpookie.reinventory.client.REinventoryClient"
+		],
+		"fabric-datagen": [
+			"uberpookie.reinventory.REinventoryDataGenerator"
+		]
+	},
+	"mixins": [
+		"reinventory.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
