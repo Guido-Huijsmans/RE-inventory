@@ -9,7 +9,7 @@
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/user/uberpookie",
-		"sources": ""
+		"sources": "https://github.com/Guido-Huijsmans/RE-inventory"
 	},
 	"license": "MIT",
 	"icon": "assets/reinventory/icon.png",
