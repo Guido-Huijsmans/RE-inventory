@@ -3,7 +3,8 @@
 	"package": "uberpookie.reinventory.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"ExampleMixin",
+		"HandledScreenAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1

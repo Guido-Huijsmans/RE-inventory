@@ -1,6 +1,7 @@
 1. Sorting
-2. Slot locking
-3. Quick deposit/loot
-4. Auto-refill (also from shulker/bundle)
-5. Auto tool selection
-6. Bundle-like UI for shulker box
+2. Shift + Mouse drag
+3. Slot locking
+4. Quick deposit/loot
+5. Auto-refill (also from shulker/bundle)
+6. Auto tool selection
+7. Bundle-like UI for shulker box
