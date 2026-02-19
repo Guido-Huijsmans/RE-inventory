@@ -4,7 +4,11 @@
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"ExampleMixin",
-		"HandledScreenAccessor"
+		"ScreenHandlerAccessor"
+	],
+	"client": [
+		"HandledScreenAccessor",
+		"HandledScreenMouseMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

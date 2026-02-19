@@ -11,6 +11,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 import uberpookie.reinventory.REinventory;
+import uberpookie.reinventory.client.MouseTweaksController;
 
 @Environment(EnvType.CLIENT)
 public class REinventoryClient implements ClientModInitializer {
@@ -21,6 +22,8 @@ public class REinventoryClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        MouseTweaksController.loadConfig();
+
         sortKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.reinventory.sort_inventory",
                 InputUtil.Type.MOUSE,
