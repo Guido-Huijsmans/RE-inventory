@@ -36,6 +36,8 @@ public class InventorySorter {
      * Sorts a segment of the inventory using bubble sort.
      */
     public static void sortInventoryArray(ItemStack[] inventory, int startSlot, int endSlot) {
+        consolidateStacks(inventory, startSlot, endSlot);
+
         for (int i = startSlot; i < endSlot - 1; i++) {
             for (int j = startSlot; j < endSlot - 1 - (i - startSlot); j++) {
                 if (compareByCreativeOrder(inventory[j], inventory[j + 1]) > 0) {
@@ -59,5 +61,38 @@ public class InventorySorter {
             }
         }
         return false;
+    }
+
+    /**
+     * Merge compatible stacks so sorting doesn't leave partial stacks scattered.
+     */
+    public static void consolidateStacks(ItemStack[] inventory, int startSlot, int endSlot) {
+        ItemStack[] consolidated = new ItemStack[endSlot - startSlot];
+        int consolidatedIndex = 0;
+
+        for (int i = startSlot; i < endSlot; i++) {
+            ItemStack current = inventory[i];
+            if (current.isEmpty()) {
+                continue;
+            }
+
+            ItemStack remaining = current.copy();
+            for (int j = 0; j < consolidatedIndex && !remaining.isEmpty(); j++) {
+                ItemStack target = consolidated[j];
+                if (ItemStack.areItemsAndComponentsEqual(target, remaining) && target.getCount() < target.getMaxCount()) {
+                    int transferAmount = Math.min(target.getMaxCount() - target.getCount(), remaining.getCount());
+                    target.increment(transferAmount);
+                    remaining.decrement(transferAmount);
+                }
+            }
+
+            if (!remaining.isEmpty()) {
+                consolidated[consolidatedIndex++] = remaining;
+            }
+        }
+
+        for (int i = 0; i < endSlot - startSlot; i++) {
+            inventory[startSlot + i] = i < consolidatedIndex ? consolidated[i] : ItemStack.EMPTY;
+        }
     }
 }
