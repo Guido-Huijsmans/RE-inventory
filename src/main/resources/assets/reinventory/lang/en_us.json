@@ -1,6 +1,7 @@
 {
-    "key.reinventory.sort_inventory": "Sort inventory",
-    "key.reinventory.slot_lock_modifier": "Lock slot modifier",
-    "key.reinventory.clear_locks": "Clear locks",
+    "key.reinventory.sort_inventory": "Sort Inventory",
+    "key.reinventory.quick_deposit_modifier": "Quick Deposit Modifier",
+    "key.reinventory.slot_lock_modifier": "Lock Slot Modifier",
+    "key.reinventory.clear_locks": "Clear Locks",
     "key.category.reinventory.category.reinventory": "RE:inventory"
 }

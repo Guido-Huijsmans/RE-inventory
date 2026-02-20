@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import uberpookie.reinventory.client.QuickDepositClient;
 import uberpookie.reinventory.client.MouseTweaksController;
 import uberpookie.reinventory.client.SlotLockClient;
 
@@ -16,6 +17,10 @@ public abstract class HandledScreenMouseMixin {
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
     private void reinventory$mouseClicked(net.minecraft.client.gui.Click click, boolean doubleClick, CallbackInfoReturnable<Boolean> cir) {
+        if (QuickDepositClient.onMouseClicked((HandledScreen)(Object)this, click)) {
+            cir.setReturnValue(true);
+            return;
+        }
         if (SlotLockClient.onMouseClicked((HandledScreen)(Object)this, click)) {
             cir.setReturnValue(true);
             return;

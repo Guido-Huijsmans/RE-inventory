@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uberpookie.reinventory.network.MouseTweaksActionPayload;
+import uberpookie.reinventory.network.QuickDepositPayload;
 import uberpookie.reinventory.network.SortInventoryPayload;
 import uberpookie.reinventory.network.SlotLockClearPayload;
 import uberpookie.reinventory.network.SlotLockUpdatePayload;
@@ -17,6 +18,7 @@ public class REinventory implements ModInitializer {
       LOGGER.info("RE-inventory initialized!");
       SortInventoryPayload.register();
       MouseTweaksActionPayload.register();
+      QuickDepositPayload.register();
       SlotLockUpdatePayload.registerC2S();
       SlotLockSyncRequestPayload.register();
       SlotLockClearPayload.register();

@@ -17,6 +17,7 @@ import uberpookie.reinventory.network.SlotLockSyncPayload;
 import uberpookie.reinventory.network.SlotLockSyncRequestPayload;
 import uberpookie.reinventory.network.SlotLockUpdatePayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import uberpookie.reinventory.client.QuickDepositClient;
 
 @Environment(EnvType.CLIENT)
 public class REinventoryClient implements ClientModInitializer {
@@ -46,6 +47,7 @@ public class REinventoryClient implements ClientModInitializer {
                 CATEGORY
         ));
         SlotLockClient.initKeyBinding(CATEGORY);
+        QuickDepositClient.initKeyBinding(CATEGORY);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (!(client.currentScreen instanceof HandledScreen<?>)) {
@@ -55,21 +57,14 @@ public class REinventoryClient implements ClientModInitializer {
                 return;
             }
 
-            var boundKey = KeyBindingHelper.getBoundKeyOf(sortKey);
-            var window = client.getWindow();
-            boolean pressed;
-            if (boundKey.getCategory() == InputUtil.Type.MOUSE) {
-                pressed = GLFW.glfwGetMouseButton(window.getHandle(), boundKey.getCode()) == GLFW.GLFW_PRESS;
-            } else {
-                pressed = InputUtil.isKeyPressed(window, boundKey.getCode());
-            }
+            boolean pressed = isBindingDown(sortKey, client);
 
             if (pressed && !sortKeyHeld) {
                 InventoryScreenHandler.sortInventory();
             }
             sortKeyHeld = pressed;
 
-            boolean clearPressed = clearLocksKey.isPressed();
+            boolean clearPressed = isBindingDown(clearLocksKey, client);
             if (clearPressed && !clearKeyHeld) {
                 var handler = ((HandledScreen<?>) client.currentScreen).getScreenHandler();
                 SlotLockClient.clearAll(handler);
@@ -85,4 +80,13 @@ public class REinventoryClient implements ClientModInitializer {
     }
 
     private int lastSyncId = -1;
+
+    private static boolean isBindingDown(KeyBinding binding, net.minecraft.client.MinecraftClient client) {
+        var boundKey = KeyBindingHelper.getBoundKeyOf(binding);
+        var window = client.getWindow();
+        if (boundKey.getCategory() == InputUtil.Type.MOUSE) {
+            return GLFW.glfwGetMouseButton(window.getHandle(), boundKey.getCode()) == GLFW.GLFW_PRESS;
+        }
+        return InputUtil.isKeyPressed(window, boundKey.getCode());
+    }
 }

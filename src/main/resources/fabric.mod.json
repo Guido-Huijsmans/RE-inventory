@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "reinventory",
-	"version": "0.4.8",
+	"version": "0.5.2",
 	"name": "RE:inventory",
 	"description": "A simple mod to add some much needed quality of life features to Minecraft's inventory.",
 	"authors": [
