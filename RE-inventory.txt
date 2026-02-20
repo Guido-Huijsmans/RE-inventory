@@ -1,5 +1,5 @@
-1. Sorting
-2. Shift + Mouse drag
+1. Sorting | CHECK
+2. Shift + Mouse drag | CHECK
 3. Slot locking
 4. Quick deposit/loot
 5. Auto-refill (also from shulker/bundle)

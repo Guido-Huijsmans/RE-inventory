@@ -21,6 +21,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import uberpookie.reinventory.REinventory;
 import uberpookie.reinventory.inventory.InventorySorter;
+import uberpookie.reinventory.slotlock.SlotLockManager;
 
 import java.util.Comparator;
 import java.util.List;
@@ -70,6 +71,7 @@ public record SortInventoryPayload(int syncId, int slotId) implements CustomPayl
         Inventory targetInventory = targetSlot.inventory;
         List<Slot> targetSlots = handler.slots.stream()
                 .filter(slot -> slot.inventory == targetInventory && isSortableSlot(slot, handler, player))
+                .filter(slot -> !SlotLockManager.isLocked(handler, slot.id))
                 .sorted(Comparator.comparingInt(Slot::getIndex))
                 .toList();
 

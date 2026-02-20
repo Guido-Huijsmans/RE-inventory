@@ -39,5 +39,6 @@ replay_*.log
 *.hprof
 *.jfr
 
-# BUILDS AREN'T FOR THE GITHUBS
+# custom
 /build
+slotlock.txt

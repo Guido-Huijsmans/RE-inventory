@@ -5,6 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uberpookie.reinventory.network.MouseTweaksActionPayload;
 import uberpookie.reinventory.network.SortInventoryPayload;
+import uberpookie.reinventory.network.SlotLockClearPayload;
+import uberpookie.reinventory.network.SlotLockUpdatePayload;
+import uberpookie.reinventory.network.SlotLockSyncRequestPayload;
 
 public class REinventory implements ModInitializer {
    public static final String MOD_ID = "reinventory";
@@ -14,5 +17,8 @@ public class REinventory implements ModInitializer {
       LOGGER.info("RE-inventory initialized!");
       SortInventoryPayload.register();
       MouseTweaksActionPayload.register();
+      SlotLockUpdatePayload.registerC2S();
+      SlotLockSyncRequestPayload.register();
+      SlotLockClearPayload.register();
    }
 }

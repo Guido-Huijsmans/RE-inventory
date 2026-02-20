@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import uberpookie.reinventory.client.MouseTweaksController;
+import uberpookie.reinventory.client.SlotLockClient;
 
 @Environment(EnvType.CLIENT)
 @Mixin(HandledScreen.class)
@@ -15,6 +16,10 @@ public abstract class HandledScreenMouseMixin {
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
     private void reinventory$mouseClicked(net.minecraft.client.gui.Click click, boolean doubleClick, CallbackInfoReturnable<Boolean> cir) {
+        if (SlotLockClient.onMouseClicked((HandledScreen)(Object)this, click)) {
+            cir.setReturnValue(true);
+            return;
+        }
         if (MouseTweaksController.onMouseClicked((HandledScreen)(Object)this, click, doubleClick)) {
             cir.setReturnValue(true);
         }
@@ -22,6 +27,7 @@ public abstract class HandledScreenMouseMixin {
 
     @Inject(method = "mouseReleased", at = @At("HEAD"), cancellable = true)
     private void reinventory$mouseReleased(net.minecraft.client.gui.Click click, CallbackInfoReturnable<Boolean> cir) {
+        SlotLockClient.onMouseReleased((HandledScreen)(Object)this, click);
         if (MouseTweaksController.onMouseReleased((HandledScreen)(Object)this, click)) {
             cir.setReturnValue(true);
         }
@@ -29,6 +35,10 @@ public abstract class HandledScreenMouseMixin {
 
     @Inject(method = "mouseDragged", at = @At("HEAD"), cancellable = true)
     private void reinventory$mouseDragged(net.minecraft.client.gui.Click click, double deltaX, double deltaY, CallbackInfoReturnable<Boolean> cir) {
+        if (SlotLockClient.onMouseDragged((HandledScreen)(Object)this, click, deltaX, deltaY)) {
+            cir.setReturnValue(true);
+            return;
+        }
         if (MouseTweaksController.onMouseDragged((HandledScreen)(Object)this, click, deltaX, deltaY)) {
             cir.setReturnValue(true);
         }

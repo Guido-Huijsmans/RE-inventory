@@ -3,12 +3,13 @@
 	"package": "uberpookie.reinventory.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin",
-		"ScreenHandlerAccessor"
+		"ScreenHandlerAccessor",
+		"ScreenHandlerSlotLockMixin"
 	],
 	"client": [
 		"HandledScreenAccessor",
-		"HandledScreenMouseMixin"
+		"HandledScreenMouseMixin",
+		"HandledScreenSlotLockMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
