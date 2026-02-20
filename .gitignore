@@ -42,3 +42,5 @@ replay_*.log
 # custom
 /build
 slotlock.txt
+features.txt
+build_output.txt
