@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import uberpookie.reinventory.network.MouseTweaksActionPayload;
 import uberpookie.reinventory.network.QuickDepositPayload;
 import uberpookie.reinventory.network.SortInventoryPayload;
+import uberpookie.reinventory.network.AutoRefillPayload;
 import uberpookie.reinventory.network.SlotLockClearPayload;
 import uberpookie.reinventory.network.SlotLockUpdatePayload;
 import uberpookie.reinventory.network.SlotLockSyncRequestPayload;
@@ -19,6 +20,7 @@ public class REinventory implements ModInitializer {
       SortInventoryPayload.register();
       MouseTweaksActionPayload.register();
       QuickDepositPayload.register();
+      AutoRefillPayload.register();
       SlotLockUpdatePayload.registerC2S();
       SlotLockSyncRequestPayload.register();
       SlotLockClearPayload.register();

@@ -18,11 +18,13 @@ import uberpookie.reinventory.network.SlotLockSyncRequestPayload;
 import uberpookie.reinventory.network.SlotLockUpdatePayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import uberpookie.reinventory.client.QuickDepositClient;
+import uberpookie.reinventory.client.AutoRefillClient;
 
 @Environment(EnvType.CLIENT)
 public class REinventoryClient implements ClientModInitializer {
 
     private static final KeyBinding.Category CATEGORY = KeyBinding.Category.create(Identifier.of(REinventory.MOD_ID, "category.reinventory"));
+    private final AutoRefillClient autoRefillClient = new AutoRefillClient();
     private KeyBinding sortKey;
     private KeyBinding clearLocksKey;
     private boolean sortKeyHeld;
@@ -31,6 +33,7 @@ public class REinventoryClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         MouseTweaksController.loadConfig();
+        autoRefillClient.init();
         SlotLockUpdatePayload.registerS2C();
         SlotLockSyncPayload.registerS2C();
 
